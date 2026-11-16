@@ -1,0 +1,27 @@
+# Example OpenTelemetry Collector config for the lockwait probe.
+#
+#   sudo ./dist/otelcol-lockwait \
+#     --config=config/collector.yaml \
+#     --feature-gates=+service.profilesSupport
+
+extensions:
+  lockwait:
+    min_duration: 1ms
+    sample_rate: 0.1
+    max_tracked_threads: 4096
+
+receivers:
+  profiling:
+    probes:
+      - lockwait
+
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  extensions: [lockwait]
+  pipelines:
+    profiles:
+      receivers: [profiling]
+      exporters: [debug]

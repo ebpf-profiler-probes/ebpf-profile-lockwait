@@ -21,6 +21,12 @@ profile.cov
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# OCB output
+/dist/
+
+# bpf2go intermediates (committed *.o may still be checked in after generate)
+lockwait/*.o.bak
+
 # Go workspace file
 go.work
 go.work.sum
@@ -29,5 +35,5 @@ go.work.sum
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+.idea/
+.vscode/
